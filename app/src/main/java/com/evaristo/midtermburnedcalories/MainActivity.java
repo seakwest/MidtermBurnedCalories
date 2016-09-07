@@ -13,6 +13,8 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+
 public class MainActivity extends Activity implements TextView.OnEditorActionListener,
         SeekBar.OnSeekBarChangeListener, Spinner.OnItemSelectedListener, View.OnKeyListener {
 
@@ -31,8 +33,9 @@ public class MainActivity extends Activity implements TextView.OnEditorActionLis
     private int weight;
     private String weightString;
     private int miles;
-    private float caloriesBurned;
-    private int bmi;
+   // private float caloriesBurned;
+    private double caloriesBurned; //android studio told me it wanted this to be a double and not a float
+    private float bmi;
     private int feet;
     private int inches;
     private int height;
@@ -114,6 +117,14 @@ public class MainActivity extends Activity implements TextView.OnEditorActionLis
         int progress = milesSeekBar.getProgress();
         miles =  progress / 10;
 
+        //calculate calories burned
+        caloriesBurned = 0.75 * weight * miles;
+        bmi = weight * 703 / ((12 * feet + inches) * (12*feet*inches));
+
+
+        //display calculation
+        NumberFormat decimal = NumberFormat.getInstance();
+       caloriesTextView.setText(decimal.format(caloriesBurned));
 
 
 
@@ -156,6 +167,8 @@ public class MainActivity extends Activity implements TextView.OnEditorActionLis
     //
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        
 
     }
 
