@@ -76,27 +76,35 @@ public class MainActivity extends Activity implements TextView.OnEditorActionLis
         inchesSpinner.setOnItemSelectedListener(this);
 
         //shared references
-        //savedValues = getSharedPreferences("Saved Values", MODE_PRIVATE);
+        savedValues = getSharedPreferences("Saved Values", MODE_PRIVATE);
 
     }
 
 
 
-        /*
+
 
 
         @Override
         public void onPause() {
             // save the instance variables
-
-
-            //add values ot save
-
+            Editor editor = savedValues.edit();
+            editor.putInt("weight" weight);
+            editor.putInt("miles" miles );
+            editor putInt("feet" feet);
+            editor putInt("inches" inches);
             editor.commit();
 
             super.onPause();
         }
-        */
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+
 
 
 
@@ -124,7 +132,8 @@ public class MainActivity extends Activity implements TextView.OnEditorActionLis
 
         //display calculation
         NumberFormat decimal = NumberFormat.getInstance();
-       caloriesTextView.setText(decimal.format(caloriesBurned));
+        caloriesTextView.setText(decimal.format(caloriesBurned));
+        bMITextView.setText(decimal.format(bmi);
 
 
 
@@ -168,7 +177,7 @@ public class MainActivity extends Activity implements TextView.OnEditorActionLis
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-        
+
 
     }
 
